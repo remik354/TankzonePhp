@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GarageController!{% endblock %}
+
+{% block main %}
+    <h2>Liste des garages :</h2>
+
+    <table class="table">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Capacité</th>
+                    <th>Tanks</th>
+                    <th>Member</th>
+
+                </tr>
+            </thead>
+            {% for garage in garages %}
+                {# {% dump garage %} #}
+                <tr>
+                    <td>{{ garage.name }}</td>
+                    <td>{{ garage.capacity }}</td>
+                    <td>{% if garage.tank %}
+                        {% for tank in garage.tank %}
+                            {{tank.name}}
+                        {% endfor %}
+                    {% endif %}</td>
+                    <td>{{garage.member }}</td>
+                    <th> - </th>
+                    <td> <a href={{path('garage_show', {'id': garage.id})}}>show</a> </td>
+                </tr>
+            {% endfor %} {# garages #}
+    </table>
+
+    <a href="{{ path('app_garage_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,10 @@
+bootstrap_menu:
+  menus:
+    main:
+      items:
+        garages:
+          label: 'Garages'
+          route: 'garage_list'
+        usines:
+          label: 'Usines'
+          route: 'app_usine_index'

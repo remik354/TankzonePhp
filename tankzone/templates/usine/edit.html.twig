@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Usine{% endblock %}
+
+{% block body %}
+    <h1>Edit Usine</h1>
+
+    {{ include('usine/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_usine_index') }}">back to list</a>
+
+    {{ include('usine/_delete_form.html.twig') }}
+{% endblock %}

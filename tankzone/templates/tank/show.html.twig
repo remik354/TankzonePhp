@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GarageController!{% endblock %}
+
+{% block body %}
+<h2> Propriétés du tank </h2>
+
+    <table class="table">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{tank.name}}</td>
+                </tr>
+                <tr>
+                    <th>Année</th>
+                    <td>{{tank.year}}</td>
+                </tr>
+                <tr>
+                    <th>Origine</th>
+                    <td>{{tank.origine}}</td>
+                </tr>
+                <tr>
+                    <th>Valeur</th>
+                    <td>{{tank.value}}</td>
+                </tr>
+                <tr>
+                    <th>Poids</th>
+                    <td>{{tank.weight}}</td>
+                </tr>
+            </thead>
+    </table>
+
+{% endblock %}
+
+

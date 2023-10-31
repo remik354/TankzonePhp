@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GarageController!{% endblock %}
+
+{% block main %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th><h3>Tanks</h3></th>
+            </tr>
+        </thead>
+
+
+  <div class="form-horizontal">
+
+     <div class="form-group row">
+                  <div class="form-control form-control-plaintext form-control-lg">
+                          <h3>Vous êtes dans le {{ garage.name }}</h3>
+                  </div>
+          </div>
+     </div>
+
+     <div class="form-group row">
+                  <div class="form-control form-control-plaintext form-control-lg">
+                          <h3>Capacité de ce garage : {{ garage.capacity}}</h3>
+                  </div>
+          </div>
+     </div>
+
+    <!-- form-horizontal -->
+        {% for tank in garage.tank %}
+        {# {% dump tank %} #}
+
+        <tbody>
+            <tr>
+                <th> <h4>{{tank.name}}</h4></th>
+                <th> - </th>
+                <td> <a href={{path('tank_show', {'id': tank.id})}}>show</a> </td>  
+            </tr>
+        </tbody>
+    {% endfor %} {# garages #}
+
+    </table>
+{% endblock %}

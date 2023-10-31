@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Usine index{% endblock %}
+
+{% block main %}
+    <h2>Usine index</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Descrition</th>
+                <th>Active</th>
+                <th>Propriétaire</th>
+                <th>Tanks</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for usine in usines %}
+            <tr>
+                <td>{{ usine.id }}</td>
+                <td>{{ usine.name }}</td>
+                <td>{{ usine.description }}</td>
+                <td>{{ usine.active }}</td>
+                <td>{{ usine.member }}</td>
+                <td>
+                    {% for tank in usine.tanks %}
+                        {{ tank.name }}<br>
+                    {% endfor %}
+                </td>               
+                <td>
+                    <a href="{{ path('app_usine_show', {'id': usine.id}) }}">show</a>
+                    <a href="{{ path('app_usine_edit', {'id': usine.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_usine_new') }}">Create new</a>
+{% endblock %}

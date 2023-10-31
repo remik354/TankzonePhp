@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Usine{% endblock %}
+
+{% block body %}
+    <h1>Usine</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ usine.id }}</td>
+            </tr>
+            <tr>
+                <th>Pays</th>
+                <td>{{ usine.name }}</td>
+            </tr>
+            <tr>
+                <th>Activite</th>
+                <td>{{ usine.active }}</td>
+            </tr>
+            <tr>
+                <th>Member</th>
+            <td>{{ usine.member }}</td>
+            </tr>
+            <tr>
+            <th>Tanks</th>
+            <td>
+            {% for tank in usine.tanks %}
+                {{ tank.name }}<br>
+                <th> - </th>
+                <td> <a href={{path('tank_show', {'id': tank.id})}}>show</a> </td>  
+            {% endfor %}
+            </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_usine_index') }}">back to list</a>
+
+    <a href="{{ path('app_usine_edit', {'id': usine.id}) }}">edit</a>
+
+    {{ include('usine/_delete_form.html.twig') }}
+{% endblock %}
