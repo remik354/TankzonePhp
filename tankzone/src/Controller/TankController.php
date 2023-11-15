@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
 
+
 #[Route('/tank')]
 class TankController extends AbstractController
 {
@@ -35,5 +36,17 @@ class TankController extends AbstractController
             );
 
     }
+
+    #[Route('/', name: 'app_tank_index', methods: ['GET'])]
+        public function index(TankRepository $tankRepository): Response
+        {
+                if ($this->isGranted('ROLE_ADMIN')) {
+                        $tank = $tankRepository->findAll();
+                }
+                else {
+                        $member = $this->getUser()->getMember();
+                        $tank = $tankRepository->findMembertank($member);
+                }
+        }
 }
 

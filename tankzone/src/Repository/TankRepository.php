@@ -21,6 +21,20 @@ class TankRepository extends ServiceEntityRepository
         parent::__construct($registry, Tank::class);
     }
 
+    /**
+     * @return Tank[] Returns an array of Tank objects for a member
+     */
+    public function findMemberTank(Member $member): array
+    {
+            return $this->createQueryBuilder('o')
+                    ->leftJoin('o.garage', 'i')
+                    ->andWhere('i.owner = :member')
+                    ->setParameter('member', $member)
+                    ->getQuery()
+                    ->getResult()
+            ;
+    }
+
 //    /**
 //     * @return Tank[] Returns an array of Tank objects
 //     */

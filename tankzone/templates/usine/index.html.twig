@@ -3,36 +3,27 @@
 {% block title %}Usine index{% endblock %}
 
 {% block main %}
-    <h2>Usine index</h2>
+    <h2>Liste des Usines:</h2>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nom</th>
-                <th>Descrition</th>
-                <th>Active</th>
                 <th>Propriétaire</th>
-                <th>Tanks</th>
-                <th>actions</th>
+                <th>Public </th>
             </tr>
         </thead>
         <tbody>
         {% for usine in usines %}
             <tr>
-                <td>{{ usine.id }}</td>
                 <td>{{ usine.name }}</td>
-                <td>{{ usine.description }}</td>
-                <td>{{ usine.active }}</td>
-                <td>{{ usine.member }}</td>
-                <td>
-                    {% for tank in usine.tanks %}
-                        {{ tank.name }}<br>
-                    {% endfor %}
-                </td>               
+                <td>{{ usine.member }}</td>   
+                <td>{{ usine.public ? 'yes' : 'no' }}</td>                  
                 <td>
                     <a href="{{ path('app_usine_show', {'id': usine.id}) }}">show</a>
+                {% if is_granted('ROLE_USER') %}
                     <a href="{{ path('app_usine_edit', {'id': usine.id}) }}">edit</a>
+                {% endif %}
                 </td>
             </tr>
         {% else %}
@@ -44,4 +35,5 @@
     </table>
 
     <a href="{{ path('app_usine_new') }}">Create new</a>
+    <a href="{{ path('app_usine_index') }}">back to list</a>
 {% endblock %}

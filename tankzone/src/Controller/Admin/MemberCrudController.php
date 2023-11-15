@@ -22,7 +22,8 @@ class MemberCrudController extends AbstractCrudController
             // IdField::new('id'),
             TextField::new('name'),
             TextEditorField::new('description'),
-            AssociationField::new('garage')
+            AssociationField::new('garage'),
+            AssociationField::new('usine')
 
         ];
     }

@@ -19,13 +19,20 @@
                 <div class="container px-4 px-lg-5">
                     <a class="navbar-brand" href="{{ path('home') }}">Tankzone</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        {{ render_bootstrap_menu('main') }} 
-                        </ul>
-                    </div>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                                {{ render_bootstrap_menu('main') }}
+                                {% if app.user %}
+                                    {{ render_bootstrap_menu('account') }}
+                                {% else %}
+                                    {{ render_bootstrap_menu('anonymousaccount') }}
+                                {% endif %} {# app.user #}
+                            </ul>
+                        </div>
                 </div>
             </nav>
+
+
         {% endblock %}{# menu #}
 
         {% block body %}
@@ -46,11 +53,10 @@
         {% endblock %} {# main #}
 
         </main>
-
     </div> <!-- /.body-container -->
 
     {% block footer %}
-    <footer class="text-center text-lg-start bg-light text-muted">
+    <footer class="text-center text-lg-start bg-light text-muted" style="bottom: 0; width: 100%;">
         <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
         FOOTER
         </div>

@@ -24,10 +24,7 @@ class Member
     #[ORM\OneToMany(mappedBy: 'member', targetEntity: Garage::class, orphanRemoval: true, cascade: ['persist'])]
     private Collection $garage;
 
-    #[ORM\OneToMany(mappedBy: 'Member', targetEntity: Usine::class)]
-    private Collection $usines;
-
-    #[ORM\OneToMany(mappedBy: 'member', targetEntity: Usine::class)]
+    #[ORM\OneToMany(mappedBy: 'member', targetEntity: Usine::class, orphanRemoval: true, cascade: ['persist'])]
     private Collection $usine;
 
     /**
@@ -41,7 +38,6 @@ class Member
     public function __construct()
     {
         $this->garage = new ArrayCollection();
-        $this->usines = new ArrayCollection();
         $this->usine = new ArrayCollection();
     }
 
@@ -98,36 +94,6 @@ class Member
             // set the owning side to null (unless already changed)
             if ($garage->getMember() === $this) {
                 $garage->setMember(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Usine>
-     */
-    public function getUsines(): Collection
-    {
-        return $this->usines;
-    }
-
-    public function addUsine(Usine $usine): static
-    {
-        if (!$this->usines->contains($usine)) {
-            $this->usines->add($usine);
-            $usine->setMember($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUsine(Usine $usine): static
-    {
-        if ($this->usines->removeElement($usine)) {
-            // set the owning side to null (unless already changed)
-            if ($usine->getMember() === $this) {
-                $usine->setMember(null);
             }
         }
 

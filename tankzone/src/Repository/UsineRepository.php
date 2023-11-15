@@ -17,9 +17,13 @@ use Doctrine\Persistence\ManagerRegistry;
 class UsineRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
-    {
+    {    
         parent::__construct($registry, Usine::class);
     }
+
+
+}
+
 
 //    /**
 //     * @return Usine[] Returns an array of Usine objects
@@ -45,4 +49,3 @@ class UsineRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-}

@@ -2,9 +2,23 @@ bootstrap_menu:
   menus:
     main:
       items:
-        garages:
-          label: 'Garages'
-          route: 'garage_list'
         usines:
           label: 'Usines'
           route: 'app_usine_index'
+        members:
+          label: 'Membres'
+          route: 'app_member_index'
+    anonymousaccount:
+      items:
+         login:
+            label: 'Login'
+            route: 'app_login'
+#        register:
+#           label: 'Register'
+#           route: 'app_register'
+    account:
+      items:
+         logout:
+            label: 'Logout'
+            route: 'app_logout'
+            roles: [ 'ROLE_USER' ]

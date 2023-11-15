@@ -23,12 +23,12 @@ class Usine
     private ?string $description = null;
 
     #[ORM\Column]
-    private ?bool $active = null;   
+    private ?bool $public = null;   
 
     #[ORM\ManyToOne(inversedBy: 'usine')]
     private ?Member $member = null;
 
-    #[ORM\ManyToMany(targetEntity: Tank::class, inversedBy: 'usines')]
+    #[ORM\ManyToMany(targetEntity: Tank::class, inversedBy: 'usine')]
     private Collection $tanks;
 
     /**
@@ -74,14 +74,14 @@ class Usine
         return $this;
     }
 
-    public function isActive(): ?bool
+    public function isPublic(): ?bool
     {
-        return $this->active;
+        return $this->public;
     }
 
-    public function setActive(bool $active): static
+    public function setPublic(bool $public): static
     {
-        $this->active = $active;
+        $this->public = $public;
 
         return $this;
     }

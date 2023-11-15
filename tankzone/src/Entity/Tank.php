@@ -38,7 +38,7 @@ class Tank
 
     public function __construct()
     {
-        $this->usines = new ArrayCollection();
+        $this->usine = new ArrayCollection();
     }
 
     /**
@@ -130,15 +130,15 @@ class Tank
     /**
      * @return Collection<int, Usine>
      */
-    public function getUsines(): Collection
+    public function getusine(): Collection
     {
-        return $this->usines;
+        return $this->usine;
     }
 
     public function addUsine(Usine $usine): static
     {
-        if (!$this->usines->contains($usine)) {
-            $this->usines->add($usine);
+        if (!$this->usine->contains($usine)) {
+            $this->usine->add($usine);
             $usine->addTank($this);
         }
 
@@ -147,7 +147,7 @@ class Tank
 
     public function removeUsine(Usine $usine): static
     {
-        if ($this->usines->removeElement($usine)) {
+        if ($this->usine->removeElement($usine)) {
             $usine->removeTank($this);
         }
 

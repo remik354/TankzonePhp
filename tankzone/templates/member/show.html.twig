@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Membre{% endblock %}
+
+{% block main %}
+    <h1>Membre</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Nom</th>
+                <td>{{ member.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ member.Description }}</td>
+            </tr>
+            <tr>
+            {% for garage in member.garage %}
+                <tr>
+                <th>garage n°{{garage.id}}</th>
+                <td>
+                    {{ garage.name }}<br>
+                    <th> - </th>
+                    <td> <a href={{path('app_member_garage_show', {'member_id': member.id, 'garage_id': garage.id})}}>show</a> </td>  
+                </td>
+                </tr>
+            {% endfor %}
+            </tr>
+            <tr>
+            {% for usine in member.usine %}
+                <tr>
+                <th>usine n°{{usine.id}}</th>
+                <td>
+                    {{ usine.name }}<br>
+                    <th> - </th>
+                    <td> <a href={{path('app_member_usine_show', {'member_id': member.id, 'usine_id': usine.id})}}>show</a> </td>  
+                </td>
+                </tr>
+            {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_garage_new', {'id': member.id}) }}">add new garage</a>
+    <a href="{{ path('app_usine_new', {'id': member.id}) }}">add new usine</a>
+    
+    <a href="{{ path('app_member_index') }}">back to list</a>
+
+{% endblock %}

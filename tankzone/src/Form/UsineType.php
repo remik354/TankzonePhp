@@ -14,9 +14,13 @@ class UsineType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('active')
-            ->add('member')
-            ->add('tanks')
+            ->add('public')
+            ->add('member', null, ['disabled' => true])
+            ->add('tanks', null,
+            ['by_reference' => false,
+            'multiple' => true, 
+            'expanded' => true
+            ])
         ;
     }
 

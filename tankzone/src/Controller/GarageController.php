@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Garage;
+use App\Entity\Member;
 use App\Form\GarageType;
 use App\Repository\GarageRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,7 +15,6 @@ use Doctrine\Persistence\ManagerRegistry;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 
 
-#[Route('/garage')]
 class GarageController extends AbstractController
 {
     #[Route('/', name: 'home', methods: ['GET'])]
@@ -28,7 +28,7 @@ class GarageController extends AbstractController
     /**
      * Lists all todo entities.
      */
-    #[Route('/list', name: 'garage_list', methods: ['GET'])]
+    #[Route('/garage/list', name: 'garage_list', methods: ['GET'])]
     public function listAction(ManagerRegistry $doctrine): Response
     {
             $entityManager= $doctrine->getManager();
@@ -38,10 +38,16 @@ class GarageController extends AbstractController
                     );
     }
 
-    #[Route('/new', name: 'app_garage_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/garage/new/{id}', name: 'app_garage_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager, GarageRepository $garageRepository, Member $member): Response
     {
-        $garage = new garage();
+        $garage = new Garage();
+        $garage->setMember($member);
+
+    // #[Route('/new', name: 'app_garage_new', methods: ['GET', 'POST'])]
+    // public function new(Request $request, EntityManagerInterface $entityManager): Response
+    // {
+    //     $garage = new garage();
         $form = $this->createForm(GarageType::class, $garage);
         $form->handleRequest($request);
 
@@ -59,7 +65,7 @@ class GarageController extends AbstractController
 
     } 
 
-    #[Route('/{id}', name: 'garage_show', requirements: ['id' => '\d+'])]
+    #[Route('/garage/{id}', name: 'garage_show', requirements: ['id' => '\d+'])]
     public function show(ManagerRegistry $doctrine, $id)
     {
             $garageRepo = $doctrine->getRepository(garage::class);
@@ -71,7 +77,8 @@ class GarageController extends AbstractController
 
             return  $this->render('garage/show.html.twig',
                     [ 'garage' => $garage ]
-                    );
+                    );  
     }
-}
 
+        
+}

@@ -3,9 +3,24 @@
 {% block title %}Bonjour!{% endblock %}
 
 {% block main %}
+    <div class="container text-center">
+        <h1>Bonjour</h1>
+        <p>{{ welcome }}</p>
 
-<h1>Bonjour</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h3>Accéder aux usines :</h3>
+                <a href="{{ path('app_usine_index') }}">
+                    <img src='images/garage_menu.jpg' alt="Accéder aux usines" width=300 height=200>
+                </a>
+            </div>
 
-    <p>{{ welcome }}</p>
-
+            <div class="col-md-6">
+                <h3>Accéder aux membres :</h3>
+                <a href="{{ path('app_member_index') }}">
+                    <img src='images/member.PNG' alt="Accéder aux membres" width=300 height=200>
+                </a>
+            </div>
+        </div>
+    </div>
 {% endblock %} {# main #}

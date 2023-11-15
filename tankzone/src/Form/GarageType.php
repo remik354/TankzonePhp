@@ -15,7 +15,9 @@ class GarageType extends AbstractType
             ->add('name')
             ->add('capacity')
             ->add('tank')
-            ->add('member')
+            ->add('member', null, [
+                'disabled'   => true,
+            ])
         ;
     }
 
@@ -25,4 +27,5 @@ class GarageType extends AbstractType
             'data_class' => Garage::class,
         ]);
     }
+
 }
