@@ -78,7 +78,7 @@ class Member
         return $this->garage;
     }
 
-    public function addGarage(garage $garage): static
+    public function addGarage(Garage $garage): static
     {
         if (!$this->garage->contains($garage)) {
             $this->garage->add($garage);
@@ -88,7 +88,7 @@ class Member
         return $this;
     }
 
-    public function removeGarage(garage $garage): static
+    public function removeGarage(Garage $garage): static
     {
         if ($this->garage->removeElement($garage)) {
             // set the owning side to null (unless already changed)
@@ -106,5 +106,27 @@ class Member
     public function getUsine(): Collection
     {
         return $this->usine;
+    }
+
+    public function addUsine(Usine $usine): static
+    {
+        if (!$this->usine->contains($usine)) {
+            $this->usine->add($usine);
+            $usine->setMember($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUsine(Usine $usine): static
+    {
+        if ($this->usine->removeElement($usine)) {
+            // set the owning side to null (unless already changed)
+            if ($usine->getMember() === $this) {
+                $usine->setMember(null);
+            }
+        }
+
+        return $this;
     }
 }
